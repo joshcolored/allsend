@@ -32,7 +32,7 @@
     <h5 class="mb-2 text-2xl lg:text-xl font-medium">
         Oops!</h5>
     <p id="content" class="line-clamp-6 text-sm font-normal text-gray-700">
-      A device with the same name is already connected to WaterDrop!
+      A device with the same name is already connected to Sendent!
     </p>
     <div class="mt-4 flex w-full justify-end gap-2">
       <button
