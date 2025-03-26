@@ -22,6 +22,27 @@
     showToast("Please refresh the page after making any changes!");
   };
 
+  const handleSelectChange = (e) => {
+    if (e.target.value == "render") {
+      url = "https://waterdrop-sqxs.onrender.com";
+      localStorage.setItem("url", "https://sendent-server.onrender.com");
+    } else if (e.target.value == "glitch") {
+      url = "https://sendent-server.onrender.com";
+      localStorage.setItem("url", "https://sendent-server.onrender.com");
+    } else {
+      if (
+        oldUrl != "https://sendent-server.onrender.com" &&
+        oldUrl != "https://sendent-server.onrender.com"
+      ) {
+        url = oldUrl;
+        localStorage.setItem("url", oldUrl);
+      } else {
+        url = "";
+      }
+    }
+    showToast("Please refresh the page after making any changes!");
+  };
+
   const handleURLChange = (e) => {
     url = e.target.value;
     oldUrl = e.target.value;
@@ -72,14 +93,46 @@
       Please input your local IP Address located in your settings on IOS or Android. If you're using PC, please run Command Prompt and type "ipconfig" to get your IP Address.
       </div>
 
+      <select
+        class="h-10 w-full rounded-lg bg-zinc-100 px-4 text-sm"
+        name="name"
+        id="name"
+        on:change={handleSelectChange}
+      >
+        <option
+          value="render"
+          selected={url == "https://sendent-server.onrender.com"}
+          >Server 1</option
+        >
+        <option
+          value="glitch"
+          selected={url == "https://sendent-server.onrender.com"}
+          >Server 2</option
+        >
+        <option value="local" selected={true}>Local Server</option>
+      </select>
       <input
+        class="mt-2 h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm {url ==
+          'https://sendent-server.onrender.com' ||
+        url == 'https://sendent-server.onrender.com'
+          ? 'hidden'
+          : ''}"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="enter local server url"
+        value={url}
+        on:change={handleURLChange}
+      />
+    </div>
+      <!--<input
         class="mt-2 h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm"
         type="text"
         name="name"
         id="name"
         placeholder="Enter local server url"
         on:change={handleURLChange}
-      />
+      />-->
     </div>
     <hr>
     <div class="mt-8 text-center text-xs text-gray-500">No need to worry, settings are auto saved!</div>
