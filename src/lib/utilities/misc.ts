@@ -50,8 +50,8 @@ const getWorkingURL = async () => {
   let URL = localStorage.getItem("url");
   if (!URL) {
     // no URL was saved
-    localStorage.setItem("url", "https://waterdrop-server.glitch.me");
-    URL = "https://waterdrop-server.glitch.me";
+    localStorage.setItem("url", "https://sendent-server.onrender.com");
+    URL = "https://sendent-server.onrender.com";
     workingURL.set(URL);
   }
   modalMessage.set("Connecting to server");
@@ -65,11 +65,11 @@ const getWorkingURL = async () => {
     modalMessage.set("Trying public servers");
     try {
       // probe glitch server
-      await fetch("https://waterdrop-server.glitch.me");
-      workingURL.set("https://waterdrop-server.glitch.me");
+      await fetch("https://sendent-server.onrender.com");
+      workingURL.set("https://sendent-server.onrender.com");
     } catch (error) {
       // last option
-      workingURL.set("https://waterdrop-sqxs.onrender.com");
+      workingURL.set("https://sendent-server.onrender.com");
     }
   }
 };
