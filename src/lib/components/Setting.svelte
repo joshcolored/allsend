@@ -133,7 +133,6 @@
         placeholder="Enter local server url"
         on:change={handleURLChange}
       />-->
-    </div>
     <hr>
     <div class="mt-8 text-center text-xs text-gray-500">No need to worry, settings are auto saved!</div>
   </div>
