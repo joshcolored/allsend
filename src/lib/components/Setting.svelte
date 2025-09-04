@@ -56,28 +56,31 @@
 </script>
 
 <div
-  class="flex h-screen w-screen flex-col bg-white justify-center items-center"
+  class="flex w-screen flex-col items-center justify-center min-h-screen bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]"
 >
   <div
     on:click={closeSettings}
     on:keypress={closeSettings}
-    class="icon mb-6 flex w-full justify-start pl-3 pt-4 lg:cursor-pointer lg:pr-8 lg:pt-6"
+    class="icon mb-6 mt-2px flex w-full justify-start pl-3 lg:cursor-pointer lg:pr-8 lg:mt-6 ml-2"
   >
-    <span class="material-symbols-rounded text-3xl"> arrow_back </span>
+    <span class="material-symbols-rounded text-3xl text-white"> arrow_back </span>
   </div>
-  <div class="relative mx-8 flex h-screen max-w-[370px] flex-col">
-    <h1 class="mb-8 text-3xl font-medium">Settings</h1>
-    <hr>
+  <div
+    class="relative mx-8 flex h-[100%] max-w-[370px] flex-col rounded-lg p-6"
+
+  >
+    <h1 class="mb-8 text-3xl font-medium text-[#1a8bbb]">Settings</h1>
+    <hr class="border-gray-500">
     <div class="settings-item my-6 w-full">
-      <label for="name" class="mb-1 block text-lg font-medium"
+      <label for="name" class="mb-1 block text-lg font-medium text-white"
         >Device name:</label
       >
-      <div class="mb-4 text-xs text-gray-500">
+      <div class="mb-4 text-xs text-gray-300">
         Provide a specific name for this device such as 'iPhone 12',
-        'Lenovo ThinkPad' or 'moto g52'.
+        'Lenovo ThinkPad' or 'PC-NAME'.
       </div>
       <input
-        class="h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm"
+        class="h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm text-black"
         type="text"
         name="name"
         id="name"
@@ -86,15 +89,15 @@
         on:change={handleNameChange}
       />
     </div>
-    <hr>
+    <hr class="border-gray-500">
     <div class="settings-item my-4 w-full">
-      <label for="name" class="mb-2 block text-lg font-medium">Server:</label>
-      <div class="mb-4 text-xs text-gray-500">
-      Please input your local IP Address located in your settings on IOS or Android. If you're using PC, please run Command Prompt and type "ipconfig" to get your IP Address.
+      <label for="name" class="mb-2 block text-lg font-medium text-white">Server:</label>
+      <div class="mb-4 text-xs text-gray-300">
+        Choose a server to connect to. For best performance, select a server geographically close to you. You can also run your own local server for enhanced privacy and control.
       </div>
 
       <select
-        class="h-10 w-full rounded-lg bg-zinc-100 px-4 text-sm"
+        class="h-10 w-full rounded-lg bg-zinc-100 px-4 text-sm text-black"
         name="name"
         id="name"
         on:change={handleSelectChange}
@@ -107,12 +110,12 @@
         <option
           value="glitch"
           selected={url == "https://sendent-server.onrender.com"}
-          >Server 2</option
+          >Default Server 2</option
         >
         <option value="local" selected={true}>Local Server</option>
       </select>
       <input
-        class="mt-2 h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm {url ==
+        class="mt-2 h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm text-black {url ==
           'https://sendent-server.onrender.com' ||
         url == 'https://sendent-server.onrender.com'
           ? 'hidden'
@@ -125,15 +128,7 @@
         on:change={handleURLChange}
       />
     </div>
-      <!--<input
-        class="mt-2 h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm"
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Enter local server url"
-        on:change={handleURLChange}
-      />-->
-    <hr>
-    <div class="mt-8 text-center text-xs text-gray-500">No need to worry, settings are auto saved!</div>
+    <hr class="border-gray-500">
+    <div class="mt-8 text-center text-xs text-gray-300">Your settings are saved automatically, no action needed!</div>
   </div>
 </div>

@@ -4,9 +4,9 @@
 </script>
 
 <div
-  class="relative flex w-full shrink-0 grow-0 basis-full flex-wrap rounded-t-2xl p-6 pt-8 lg:w-32 lg:rounded-b-2xl lg:pb-6"
+  class="relative flex w-full shrink-0 grow-0 basis-full flex-wrap rounded-t-2xl p-6 pt-8 lg:w-32 lg:rounded-b-2xl lg:pb-6 bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]"
 >
-  <h1 class="absolute top-4 font-medium">Send to</h1>
+  <h1 class="absolute top-4 font-medium text-white">Send to</h1>
   {#if [...$connectedDevices.keys()].length}
     {#each [...$connectedDevices.entries()] as device}
       <DeviceListCard

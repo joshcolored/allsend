@@ -61,16 +61,16 @@
 <div
   on:drop={drop}
   on:dragover={drag}
-  class="flex w-screen flex-col items-center justify-center"
+  class="flex w-screen flex-col items-center justify-center min-h-screen bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]"
 >
   <div
     on:click={openHistory}
     on:keypress={openHistory}
     class="icon mb-6 flex w-full justify-end gap-4 pr-3 pt-4 lg:cursor-pointer lg:pr-8 lg:pt-6"
   >
-    <span class="material-symbols-rounded text-2xl"> history </span>
+    <span class="material-symbols-rounded text-2xl text-white drop-shadow-lg"> history </span>
     <span
-      class="material-symbols-rounded text-2xl"
+      class="material-symbols-rounded text-2xl text-white drop-shadow-lg"
       on:click={openSettings}
       on:keypress={openSettings}
     >
@@ -81,34 +81,40 @@
     class="relative flex h-screen w-full max-w-[900px] flex-col items-center justify-between"
   >
     <div class="m-8 text-center">
-      <h2 class="text-2xl font-medium md:text-xl lg:text-2xl">
-        Transfer your data!
+      <h1 class="text-2xl font-medium md:text-xl lg:text-3xl text-[#1a8bbb] drop-shadow-lg">
+        Welcome to SureSend!
+      </h1>
+      <h2 class="text-2xl mt-4 font-medium md:text-xl lg:text-xl text-[#e0eafc] drop-shadow">
+        Transfer anything instantly, securely and privately.
       </h2>
-      <p class="mt-2 text-sm text-gray-700">What shoud this device do?</p>
+      <p class="mt-2 text-sm text-gray-400">What should this device do?</p>
     </div>
-    <div class="relative h-[55vh] w-full">
+    <div class="relative h-[60vh] w-full flex items-center justify-center">
       <div
-        class="absolute left-1/4 top-[25%] h-[75%] w-1/2 rounded-xl border-x-4 border-t-[10px] lg:top-[27%]"
-      />
-      <div
-        class="action-item absolute left-1/4 top-[5%] flex w-1/2 flex-col items-center justify-center text-sm lg:cursor-pointer"
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[65%] w-[45%] rounded-3xl border border-[#222c3a] bg-black/60 backdrop-blur-lg shadow-2xl glass-card flex flex-col items-center justify-center"
+      >
+      <div class="flex flex-col gap-8 w-full items-center justify-center px-8 py-12">
+        <div
+        class="action-item flex w-full max-w-xs flex-col items-center justify-center text-sm lg:cursor-pointer bg-black/40 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-[#222c3a] hover:bg-[#1a8bbb]/30 transition"
         on:click={openSheet}
         on:keypress={openSheet}
-      >
-        <span class="material-symbols-rounded text-4xl text-sky-500">
+        >
+        <span class="material-symbols-rounded text-4xl text-[#1a8bbb] drop-shadow-lg">
           arrow_upward
         </span>
-        Send
-      </div>
-      <div
+        <span class="mt-2 text-white font-semibold">Send</span>
+        </div>
+        <div
         on:click={() => showToast("Listening for senders!")}
         on:keypress={() => showToast("Listening for senders!")}
-        class="action-item absolute left-1/4 top-[35%] flex w-1/2 flex-col items-center justify-center text-sm lg:cursor-pointer"
-      >
-        <span class="material-symbols-rounded text-4xl text-sky-500">
+        class="action-item flex w-full max-w-xs flex-col items-center justify-center text-sm lg:cursor-pointer bg-black/40 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-[#222c3a] hover:bg-[#1a8bbb]/30 transition"
+        >
+        <span class="material-symbols-rounded text-4xl text-[#1a8bbb] drop-shadow-lg">
           arrow_downward
         </span>
-        Receive
+        <span class="mt-2 text-white font-semibold">Receive</span>
+        </div>
+      </div>
       </div>
     </div>
     <SendingSheet />
@@ -116,7 +122,7 @@
 </div>
 <div
   class:visible
-  class="fixed left-0 top-0 z-10 hidden h-screen w-screen bg-black opacity-50"
+  class="fixed left-0 top-0 z-10 hidden h-screen w-screen bg-black opacity-60 backdrop-blur-sm"
   on:click={closeSheet}
   on:keypress={closeSheet}
 />
@@ -124,5 +130,20 @@
 <style>
   .visible {
     display: flex !important;
+  }
+  .glass-card {
+    box-shadow: 0 8px 32px 0 rgba(26, 139, 187, 0.37);
+    border-radius: 24px;
+    border: 1px solid rgba(26, 139, 187, 0.18);
+    background: rgba(16, 21, 28, 0.7);
+    backdrop-filter: blur(12px);
+  }
+  .action-item {
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px 0 rgba(26, 139, 187, 0.17);
+  }
+  .action-item:hover {
+    background: rgba(26, 139, 187, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(26, 139, 187, 0.27);
   }
 </style>

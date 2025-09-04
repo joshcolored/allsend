@@ -54,7 +54,7 @@
 >
   <div
     id="bottom-sheet"
-    class="flex w-full overflow-hidden rounded-t-2xl bg-zinc-100 lg:mx-4 lg:rounded-b-2xl"
+    class="flex w-full overflow-hidden rounded-t-2xl lg:mx-4 lg:rounded-b-2xl"
   >
     <SendingOptions />
     <ReceivingDevices />

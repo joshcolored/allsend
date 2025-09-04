@@ -36,12 +36,12 @@
   on:keypress={() => {
     send(id);
   }}
-  class="card my-2 flex w-1/4 cursor-pointer flex-col items-center justify-center rounded-lg bg-zinc-100 p-4 py-5"
+  class="card my-2 flex w-1/4 cursor-pointer flex-col items-center justify-center rounded-lg p-4 py-5"
 >
   <div
     class="icon flex h-12 w-12 items-center justify-center rounded-full border-4 border-solid"
   >
-    <span class="material-symbols-rounded text-zinc-400">
+    <span class="material-symbols-rounded text-white">
       {getIcon(deviceType)}
     </span>
   </div>
@@ -49,7 +49,7 @@
     <div
       class="file-name w-full overflow-hidden text-ellipsis whitespace-nowrap text-xs font-medium capitalize"
     >
-      {name}
+      <span class="text-white">{name}</span>
     </div>
   </div>
 </div>
