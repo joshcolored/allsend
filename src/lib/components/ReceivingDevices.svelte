@@ -16,7 +16,7 @@
       />
     {/each}
   {:else}
-    <div class="w-full pt-10 text-center lg:text-left lg:text-lg">
+    <div class="w-full pt-10 text-center text-white lg:text-left lg:text-lg">
       No nearby devices :&#40;
     </div>
   {/if}
