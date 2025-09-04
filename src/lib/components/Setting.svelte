@@ -61,13 +61,12 @@
   <div
     on:click={closeSettings}
     on:keypress={closeSettings}
-    class="icon flex w-full justify-start pl-3.5 lg:cursor-pointer lg:pr-8 lg:mt-6 ml-2" style="margin-top: -18.5rem; margin-bottom: -0.5rem;"
+    class="icon flex w-full mb-[-0.5rem] justify-start mt-8 pl-3.5 lg:cursor-pointer lg:pr-8 lg:ml-2 lg:mt-12"
   >
     <span class="material-symbols-rounded text-3xl text-white"> arrow_back </span>
   </div>
   <div
-    class="relative mx-8 flex h-[100%] max-w-[370px] flex-col rounded-lg p-6"
-
+    class="relative mx-8 flex min-h-screen max-w-[370px] flex-col rounded-lg p-6"
   >
     <h1 class="mb-8 text-3xl font-medium text-[#1a8bbb]">Settings</h1>
     <hr class="border-gray-500">
