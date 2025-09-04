@@ -61,7 +61,7 @@
   <div
     on:click={closeSettings}
     on:keypress={closeSettings}
-    class="icon mb-6 mt-2px flex w-full justify-start pl-3 lg:cursor-pointer lg:pr-8 lg:mt-6 ml-2"
+    class="icon flex w-full justify-start pl-3.5 lg:cursor-pointer lg:pr-8 lg:mt-6 ml-2" style="margin-top: -18.5rem; margin-bottom: -0.5rem;"
   >
     <span class="material-symbols-rounded text-3xl text-white"> arrow_back </span>
   </div>
