@@ -91,7 +91,7 @@
     </div>
     <div class="relative h-[60vh] w-full flex items-center justify-center">
       <div
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[65%] w-[45%] rounded-3xl border border-[#222c3a] bg-black/60 backdrop-blur-lg shadow-2xl glass-card flex flex-col items-center justify-center"
+      class="absolute left-1/2 top-[15%] -translate-x-1/2 -translate-y-1/2 h-[60%] w-[75%] rounded-3xl border border-[#222c3a] bg-black/60 backdrop-blur-lg shadow-2xl glass-card flex flex-col items-center justify-center lg:w-[45%] lg:h-[65%] lg:top-[35%]"
       >
       <div class="flex flex-col gap-8 w-full items-center justify-center px-8 py-12">
         <div
@@ -119,10 +119,16 @@
     </div>
     <SendingSheet />
   </div>
-  <footer class="w-full  text-center py-4 text-gray-400 text-sm">
-    <p>Developed by <a href="https://github.com/joshcolored" target="_blank" class="text-[#1a8bbb] hover:underline">📫 Joshua Grijaldo</a></p>
+<footer class="fixed bottom-0 left-0 w-full  text-center py-4 text-white text-sm shadow-md">
+  <p>
+    Developed by 
+    <a href="https://github.com/joshcolored" target="_blank" class="text-[#1a8bbb] hover:underline">
+      📫 Joshua Grijaldo
+    </a>
+  </p>
   <p>&copy; {new Date().getFullYear()} AllSend. All rights reserved.</p>
 </footer>
+
 </div>
 <div
   class:visible
