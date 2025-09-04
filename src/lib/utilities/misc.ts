@@ -62,7 +62,7 @@ const getWorkingURL = async () => {
     workingURL.set(URL);
   } catch (error) {
     showToast("Local server unavailable!", "warning");
-    modalMessage.set("Trying public servers");
+    modalMessage.set("Trying local servers");
     try {
       // probe glitch server
       await fetch("https://sendent-server.onrender.com");

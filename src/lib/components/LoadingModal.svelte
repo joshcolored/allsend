@@ -15,13 +15,13 @@
   class:visible
 />
 <div
-  class="wrapper fixed top-0 z-50 box-border hidden h-screen w-screen bg-white"
+  class="wrapper fixed top-0 z-50 box-border hidden h-screen w-screen bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]"
   class:visible
 >
   <div
     class="loadingCard mx-auto my-[45vh] box-border flex h-[6rem] w-[25vw] min-w-[15rem] items-center justify-center gap-4 rounded-xl font-medium text-zinc-900"
   >
-    <Spinner /> &ensp; {$modalMessage}
+  <Spinner /> &ensp; <span class="text-white">{$modalMessage} </span>
   </div>
 </div>
 

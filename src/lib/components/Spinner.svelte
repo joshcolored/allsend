@@ -1,5 +1,6 @@
 <script>
-  export let dark = true;
+  export let white = true;
+  let dark = !white;
 </script>
 
 <svg

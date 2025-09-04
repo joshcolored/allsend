@@ -76,8 +76,8 @@
         >Device name:</label
       >
       <div class="mb-4 text-xs text-gray-300">
-        Provide a specific name for this device such as 'iPhone 12',
-        'Lenovo ThinkPad' or 'PC-NAME'.
+        Provide a specific name for this device such as 'iPhone 16',
+        'Samsung Fold 5' or 'PC-NAME'.
       </div>
       <input
         class="h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm text-black"
