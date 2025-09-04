@@ -119,7 +119,7 @@
     </div>
     <SendingSheet />
   </div>
-<footer class="fixed bottom-0 left-0 w-full  text-center py-4 text-white text-sm shadow-md">
+<footer class="sticky bottom-0 left-0 w-full  text-center py-4 text-white text-sm shadow-md">
   <p>
     Developed by 
     <a href="https://github.com/joshcolored" target="_blank" class="text-[#1a8bbb] hover:underline">
