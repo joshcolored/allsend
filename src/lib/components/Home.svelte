@@ -61,75 +61,85 @@
 <div
   on:drop={drop}
   on:dragover={drag}
-  class="flex w-screen flex-col items-center justify-center min-h-screen bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]"
+  class="flex flex-col min-h-screen w-screen bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]"
 >
+  <!-- Header icons -->
   <div
     on:click={openHistory}
     on:keypress={openHistory}
-    class="icon mb-6 flex w-full justify-end gap-4 pr-3 pt-4 lg:cursor-pointer lg:pr-8 lg:pt-6"
+    class="icon flex w-full justify-end gap-4 px-4 pt-4 lg:cursor-pointer lg:px-8 lg:pt-6"
   >
-    <span class="material-symbols-rounded text-2xl text-white drop-shadow-lg"> history </span>
+    <span class="material-symbols-rounded text-3xl text-white drop-shadow-lg"> history </span>
     <span
-      class="material-symbols-rounded text-2xl text-white drop-shadow-lg"
+      class="material-symbols-rounded text-3xl text-white drop-shadow-lg"
       on:click={openSettings}
       on:keypress={openSettings}
     >
       tune
     </span>
   </div>
-  <div
-    class="relative flex h-screen w-full max-w-[900px] flex-col items-center justify-between"
-  >
-    <div class="m-8 text-center">
-      <h1 class="text-2xl font-medium md:text-xl lg:text-3xl text-[#1a8bbb] drop-shadow-lg">
+
+  <!-- Main content -->
+  <main class="flex flex-col flex-grow items-center justify-center w-full max-w-[900px] mx-auto px-4">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl mb-0 lg:text-5xl font-medium text-[#1a8bbb] drop-shadow-lg">
         Welcome to AllSend!
       </h1>
-      <h2 class="text-2xl mt-4 font-medium md:text-xl lg:text-xl text-[#e0eafc] drop-shadow">
+      <h2 class="text-lg lg:text-3xl lg:mb-8 mt-2 font-medium text-[#e0eafc] drop-shadow">
         Transfer anything instantly, securely and privately.
       </h2>
-      <p class="mt-2 text-sm text-gray-400">What should this device do?</p>
+      <p class="mt-2 text-sm lg:text-xl text-gray-400">What should this device do?</p>
     </div>
-    <div class="relative h-[60vh] w-full flex items-center justify-center">
+
+    <!-- Action cards -->
+    <div
+      class="flex flex-col md:flex-row gap-6 w-full max-w-[20rem] md:max-w-2xl items-stretch justify-center"
+    >
+      <!-- Send -->
       <div
-      class="absolute left-1/2 top-[15%] -translate-x-1/2 -translate-y-1/2 h-[60%] w-[75%] rounded-3xl border border-[#222c3a] bg-black/60 backdrop-blur-lg shadow-2xl glass-card flex flex-col items-center justify-center lg:w-[45%] lg:h-[65%] lg:top-[35%]"
-      >
-      <div class="flex flex-col gap-8 w-full items-center justify-center px-8 py-12">
-        <div
-        class="action-item flex w-full max-w-xs flex-col items-center justify-center text-sm lg:cursor-pointer bg-black/40 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-[#222c3a] hover:bg-[#1a8bbb]/30 transition"
+        class="action-item w-full md:flex-1 flex flex-col items-center justify-center 
+               bg-black/40 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-[#222c3a] 
+               hover:bg-[#1a8bbb]/30 transition cursor-pointer"
         on:click={openSheet}
         on:keypress={openSheet}
-        >
+      >
         <span class="material-symbols-rounded text-4xl text-[#1a8bbb] drop-shadow-lg">
           arrow_upward
         </span>
         <span class="mt-2 text-white font-semibold">Send</span>
-        </div>
-        <div
+      </div>
+
+      <!-- Receive -->
+      <div
         on:click={() => showToast("Listening for senders!")}
         on:keypress={() => showToast("Listening for senders!")}
-        class="action-item flex w-full max-w-xs flex-col items-center justify-center text-sm lg:cursor-pointer bg-black/40 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-[#222c3a] hover:bg-[#1a8bbb]/30 transition"
-        >
+        class="action-item w-full md:flex-1 flex flex-col items-center justify-center 
+               bg-black/40 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-[#222c3a] 
+               hover:bg-[#1a8bbb]/30 transition cursor-pointer"
+      >
         <span class="material-symbols-rounded text-4xl text-[#1a8bbb] drop-shadow-lg">
           arrow_downward
         </span>
         <span class="mt-2 text-white font-semibold">Receive</span>
-        </div>
-      </div>
       </div>
     </div>
-    <SendingSheet />
-  </div>
-<footer class="sticky bottom-0 left-0 w-full  text-center py-4 text-white text-sm shadow-md">
-  <p>
-    Developed by 
-    <a href="https://github.com/joshcolored" target="_blank" class="text-[#1a8bbb] hover:underline">
-      📫 Joshua Grijaldo
-    </a>
-  </p>
-  <p>&copy; {new Date().getFullYear()} AllSend. All rights reserved.</p>
-</footer>
 
+    <SendingSheet />
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full text-center py-4 text-white lg:text-[22px] text-sm shadow-md">
+    <p class="lg:mb-3">
+      Developed by
+      <a href="https://github.com/joshcolored" target="_blank" class="text-[#1a8bbb] hover:underline">
+        📫 Joshua Grijaldo
+      </a>
+    </p>
+    <p>&copy; {new Date().getFullYear()} AllSend. All rights reserved.</p>
+  </footer>
 </div>
+
+<!-- Overlay -->
 <div
   class:visible
   class="fixed left-0 top-0 z-10 hidden h-screen w-screen bg-black opacity-60 backdrop-blur-sm"
@@ -151,6 +161,7 @@
   .action-item {
     transition: background 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 24px 0 rgba(26, 139, 187, 0.17);
+    min-height: 150px; /* ensures equal height on mobile & desktop */
   }
   .action-item:hover {
     background: rgba(26, 139, 187, 0.18);
