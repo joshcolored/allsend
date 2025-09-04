@@ -82,7 +82,7 @@
   >
     <div class="m-8 text-center">
       <h1 class="text-2xl font-medium md:text-xl lg:text-3xl text-[#1a8bbb] drop-shadow-lg">
-        Welcome to SureSend!
+        Welcome to AllSend!
       </h1>
       <h2 class="text-2xl mt-4 font-medium md:text-xl lg:text-xl text-[#e0eafc] drop-shadow">
         Transfer anything instantly, securely and privately.
@@ -119,6 +119,10 @@
     </div>
     <SendingSheet />
   </div>
+  <footer class="w-full  text-center py-4 text-gray-400 text-sm">
+    <p>Developed by <a href="https://github.com/joshcolored" target="_blank" class="text-[#1a8bbb] hover:underline">📫 Joshua Grijaldo</a></p>
+  <p>&copy; {new Date().getFullYear()} AllSend. All rights reserved.</p>
+</footer>
 </div>
 <div
   class:visible
