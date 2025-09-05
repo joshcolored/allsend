@@ -143,3 +143,32 @@ export const receivedList = derived(receivingList, ($enrty) => {
   });
   return newMap;
 });
+
+
+// ✅ Mobile Data Only mode store
+function createMobileDataOnly() {
+  const saved = localStorage.getItem("mobileDataOnly") === "true";
+  const { subscribe, set, update } = writable<boolean>(saved);
+
+  return {
+    subscribe,
+    set, // allow direct .set(true/false)
+    enable: () => {
+      localStorage.setItem("mobileDataOnly", "true");
+      set(true);
+    },
+    disable: () => {
+      localStorage.setItem("mobileDataOnly", "false");
+      set(false);
+    },
+    toggle: () => {
+      update((v) => {
+        const newVal = !v;
+        localStorage.setItem("mobileDataOnly", String(newVal));
+        return newVal;
+      });
+    },
+  };
+}
+
+export const mobileDataOnly = createMobileDataOnly();

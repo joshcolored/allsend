@@ -33,6 +33,15 @@ function bytesToSize(bytes: number) {
   if (i === 0) return `${bytes}${sizes[i]}`;
   return `${(bytes / 1024 ** i).toFixed(0)} ${sizes[i]}`;
 }
+/* --- helpers ---*/
+function isMobileDataOnly() {
+  // Not supported on all browsers (works on Chromium & Android mostly)
+  const connection = (navigator as any).connection || 
+                     (navigator as any).mozConnection || 
+                     (navigator as any).webkitConnection;
+  if (!connection) return false; // fallback, can't detect
+  return connection.type === "cellular";
+}
 
 async function fetchWithTimeout(resource: string) {
   const timeout = 10000;
@@ -45,34 +54,48 @@ async function fetchWithTimeout(resource: string) {
   return response;
 }
 
+
+
 /* --- app initializer functions ---*/
 const getWorkingURL = async () => {
+  // ✅ Check if user enabled Mobile Data Only mode
+  if (
+    localStorage.getItem("mobileDataOnly") === "true" && 
+    !isMobileDataOnly()
+  ) {
+    showToast("Mobile Data Only mode is ON. Please disable Wi-Fi.", "warning");
+    throw new Error("Blocked: Wi-Fi not allowed");
+  }
+
   let URL = localStorage.getItem("url");
   if (!URL) {
-    // no URL was saved
+    // no URL was saved → fallback to default
     localStorage.setItem("url", "https://sendent-server.onrender.com");
     URL = "https://sendent-server.onrender.com";
     workingURL.set(URL);
   }
+
   modalMessage.set("Connecting to server");
 
   try {
-    // test if local server is functional
+    // test if saved/local server is functional
     await fetchWithTimeout(URL);
     workingURL.set(URL);
   } catch (error) {
     showToast("Local server unavailable!", "warning");
-    modalMessage.set("Trying local servers");
+    modalMessage.set("Trying fallback servers");
+
     try {
-      // probe glitch server
+      // Try onrender server
       await fetch("https://sendent-server.onrender.com");
       workingURL.set("https://sendent-server.onrender.com");
     } catch (error) {
-      // last option
+      // last option (still onrender, but ensures fallback)
       workingURL.set("https://sendent-server.onrender.com");
     }
   }
 };
+
 
 const setDeviceInfo = () => {
   let info = new UAParser(navigator.userAgent);

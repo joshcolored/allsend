@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { settingsPageOpen } from "../store/store";
+  import { settingsPageOpen, mobileDataOnly } from "../store/store";
   import { showToast } from "../utilities/misc";
+  import { get } from "svelte/store";
 
   let name: string;
   let url: string;
   let oldUrl: string;
+  let mobileDataChecked = false; // local checkbox binding
 
   // Detect device type from user agent
   const detectDeviceType = (): string => {
@@ -21,7 +23,6 @@
     return "Device"; // fallback
   };
 
-  // Generate device name like "iPhone-4821"
   const generateDeviceName = () => {
     const device = detectDeviceType();
     const randomId = Math.floor(1000 + Math.random() * 9000);
@@ -29,26 +30,26 @@
   };
 
   onMount(() => {
-    // Load saved name or leave blank (so placeholder shows auto-generated)
     name = localStorage.getItem("name") || "";
-
     url = localStorage.getItem("url");
     oldUrl = localStorage.getItem("url");
+
+    // Load toggle state from localStorage (fallback if store not initialized)
+    const saved = localStorage.getItem("mobileDataOnly");
+    mobileDataChecked = saved === "true" || get(mobileDataOnly);
   });
 
-  // Helper to save and refresh
   const saveAndRefresh = (key: string, value: string) => {
     localStorage.setItem(key, value);
     showToast("Settings updated — refreshing...");
     setTimeout(() => {
       location.reload();
-    }, 1200); // 1.2s delay so toast is visible
+    }, 1200);
   };
 
   const handleNameChange = (e) => {
     name = e.target.value.trim();
     if (name.length === 0) {
-      // If user clears input, regenerate default
       name = generateDeviceName();
     }
     saveAndRefresh("name", name);
@@ -79,6 +80,18 @@
     url = e.target.value;
     oldUrl = e.target.value;
     saveAndRefresh("url", url);
+  };
+
+  const handleMobileDataChange = () => {
+    localStorage.setItem("mobileDataOnly", String(mobileDataChecked));
+
+    if (mobileDataChecked) {
+      mobileDataOnly.set(true);
+      showToast("✅ Mobile Data Only mode enabled");
+    } else {
+      mobileDataOnly.set(false);
+      showToast("❌ Mobile Data Only mode disabled");
+    }
   };
 
   const closeSettings = () => {
@@ -178,6 +191,31 @@
         value={url}
         on:change={handleURLChange}
       />
+    </div>
+
+    <hr class="border-gray-500" />
+
+    <!-- Mobile Data Toggle -->
+    <div class="settings-item my-6 w-full">
+      <label
+        for="mobile-data"
+        class="mb-2 block text-lg font-medium text-white lg:text-xl"
+      >
+        Connection Mode:
+      </label>
+      <div class="mb-4 text-sm text-gray-300 lg:text-lg">
+        When enabled, the app will only work if your device is on
+        <b>mobile data</b>. Transfers will be blocked on Wi-Fi.
+      </div>
+      <label class="flex items-center gap-2 text-white">
+        <input
+          id="mobile-data"
+          type="checkbox"
+          bind:checked={mobileDataChecked}
+          on:change={handleMobileDataChange}
+        />
+        Use Mobile Data Only
+      </label>
     </div>
 
     <hr class="border-gray-500" />
