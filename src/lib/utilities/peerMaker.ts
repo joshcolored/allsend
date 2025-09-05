@@ -20,6 +20,24 @@ const SEND_SIGNALLING_ANSWER = "transfer-answer";
 const SEND_ICE_CANDIDATES = "transfer-ice";
 const SENDING_CHANNEL = "send";
 
+// ✅ ICE server config (STUN + TURN)
+const ICE_CONFIG = {
+  iceServers: [
+    { urls: "stun:stun.l.google.com:19302" },
+    { urls: "stun:stun1.l.google.com:19302" },
+    { urls: "stun:stun2.l.google.com:19302" },
+    { urls: "stun:stun3.l.google.com:19302" },
+    { urls: "stun:stun4.l.google.com:19302" },
+
+    // ⚠️ Optional TURN (replace with your own TURN server for production)
+    // {
+    //   urls: "turn:your-turn-server.com:3478",
+    //   username: "user",
+    //   credential: "pass",
+    // },
+  ],
+};
+
 const sendOffer = (
   socket: Socket,
   from: string,
@@ -96,12 +114,6 @@ const handleData = (
     var $fileBuffers = get(receivingFileBufferList);
     var $receivingProgresses = get(receivingList);
 
-    // var currentlyReceiving = [...$fileBuffers.keys()];
-
-    // var requiredID = currentlyReceiving.filter((transferID) =>
-    //   transferID.includes(deviceID)
-    // );
-    //console.log(requiredID[0]);
     var requiredID = get(currentTransferId);
 
     var fileBuffer = $fileBuffers.get(requiredID);
@@ -112,9 +124,9 @@ const handleData = (
     var receivingInfo = $receivingProgresses.get(requiredID);
     receivingInfo.receivedSize += chunkSize;
 
-    receivingInfo.receivedSize >= receivingInfo.size
-      ? (receivingInfo.receivedSize = receivingInfo.size)
-      : null;
+    if (receivingInfo.receivedSize >= receivingInfo.size) {
+      receivingInfo.receivedSize = receivingInfo.size;
+    }
 
     $receivingProgresses.set(requiredID, receivingInfo);
     receivingList.set($receivingProgresses);
@@ -126,7 +138,6 @@ const handleData = (
       }),
       SENDING_CHANNEL
     );
-    //console.log((receivingInfo.receivedSize / receivingInfo.size) * 100);
   }
 };
 
@@ -134,6 +145,7 @@ const createOfferingPeer = async (deviceID: string, socket: Socket) => {
   const peer = new Peer({
     enableDataChannels: true,
     channelLabel: SENDING_CHANNEL,
+    config: ICE_CONFIG, // ✅ add ICE config
   });
 
   peer.on("signal", (data) => {
@@ -172,7 +184,10 @@ const createOfferingPeer = async (deviceID: string, socket: Socket) => {
 };
 
 const createAnsweringPeer = async (deviceID: string, socket: Socket) => {
-  const peer = new Peer({ enableDataChannels: true });
+  const peer = new Peer({
+    enableDataChannels: true,
+    config: ICE_CONFIG, // ✅ add ICE config
+  });
 
   peer.on("signal", (data) => {
     sendAnswer(socket, socket.id, deviceID, data);
@@ -204,6 +219,7 @@ const createAnsweringPeer = async (deviceID: string, socket: Socket) => {
   peer.on("channelData", ({ channel, source, data }) => {
     handleData(peer, deviceID, source, data);
   });
+
   addPeerToConnectedList(deviceID, peer);
 };
 
