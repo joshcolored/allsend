@@ -151,13 +151,6 @@
   .visible {
     display: flex !important;
   }
-  .glass-card {
-    box-shadow: 0 8px 32px 0 rgba(26, 139, 187, 0.37);
-    border-radius: 24px;
-    border: 1px solid rgba(26, 139, 187, 0.18);
-    background: rgba(16, 21, 28, 0.7);
-    backdrop-filter: blur(12px);
-  }
   .action-item {
     transition: background 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 24px 0 rgba(26, 139, 187, 0.17);

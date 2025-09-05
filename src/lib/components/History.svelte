@@ -45,45 +45,56 @@
   };
 </script>
 
-<div class="flex w-screen flex-col items-center justify-center lg:h-fit bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]">
+<div class="flex w-screen flex-col items-center justify-start min-h-screen bg-gradient-to-br from-black via-[#10151c] to-[#1a8bbb]">
+  <!-- Back button -->
   <div
-    class="icon mb-6 flex w-full justify-start gap-4 pl-3 pt-4 lg:cursor-pointer lg:pl-8 lg:pt-6"
+    on:click={goBack}
+    on:keypress={goBack}
+    class="icon flex w-full justify-start mt-8 pl-3.5 mb-4 lg:cursor-pointer lg:pr-8 lg:ml-2 lg:mt-12"
   >
-    <span
-      on:click={goBack}
-      on:keypress={goBack}
-      class="material-symbols-rounded text-2xl text-white hover:text-[#1a8bbb] transition-colors duration-300"
-    >
-      arrow_back
-    </span>
+    <span class="material-symbols-rounded text-3xl text-white"> arrow_back </span>
   </div>
-  <div
-    class="relative flex h-screen w-full max-w-[900px] flex-col items-center"
-  >
+
+  <!-- Main content -->
+  <div class="relative flex flex-col flex-grow w-full max-w-[900px] items-center">
+    <!-- Header with segmented buttons + clear-all -->
     <div class="flex w-full items-center justify-between px-6">
-      <h1 class="text-3xl font-medium text-white tracking-wide">History</h1>
-      <div class="segmented-buttons flex text-sm bg-zinc-800 rounded-full overflow-hidden shadow-lg">
+      <h1 class="text-3xl font-medium text-white tracking-wide lg:text-4xl">History</h1>
+
+      <div class="flex items-center gap-4">
+        <!-- Segmented buttons -->
+        <div class="segmented-buttons flex text-sm bg-zinc-800 rounded-full overflow-hidden shadow-lg">
+          <button
+            on:click={() => historyPageSection.set("sent")}
+            class="rounded-l-full border-0 text-white p-2 px-8 transition-all duration-300 {$historyPageSection ==
+            'sent'
+              ? 'bg-[#1a8bbb] font-medium text-white lg:text-lg shadow-md'
+              : 'hover:bg-zinc-700'}">
+            Sent
+          </button>
+          <button
+            on:click={() => historyPageSection.set("received")}
+            class="rounded-r-full border-0 text-white p-2 px-4 transition-all duration-300 {$historyPageSection ==
+            'received'
+              ? 'bg-[#1a8bbb] font-medium text-white lg:text-lg shadow-md'
+              : 'hover:bg-zinc-700'}">
+            Received
+          </button>
+        </div>
+
+        <!-- Clear-all button beside segmented buttons -->
         <button
-          on:click={() => {
-            historyPageSection.set("sent");
-          }}
-          class="rounded-l-full border-0 text-white p-2 px-8 transition-all duration-300 {$historyPageSection ==
-          'sent'
-            ? 'bg-[#1a8bbb] font-medium text-white shadow-md'
-            : 'hover:bg-zinc-700'}">Sent</button
+          on:click={clear}
+          on:keypress={clear}
+          class="ml-2 flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-full bg-rose-600 shadow-md hover:bg-rose-700 transition-colors duration-300"
         >
-        <button
-          on:click={() => {
-            historyPageSection.set("received");
-          }}
-          class="rounded-r-full border-0 text-white p-2 px-4 transition-all duration-300 {$historyPageSection ==
-          'received'
-            ? 'bg-[#1a8bbb] font-medium text-white shadow-md'
-            : 'hover:bg-zinc-700'}">Received</button
-        >
+          <span class="material-symbols-rounded text-rose-100"> clear_all </span>
+        </button>
       </div>
     </div>
-    <div class="my-6 mb-12 w-full overflow-scroll rounded-lg p-6 text-white shadow-lg">
+
+    <!-- Content list -->
+    <div class="my-6 mb-20 w-full overflow-y-auto rounded-lg p-6 text-white max-h-[70vh]">
       {#if $historyPageSection == "sent"}
         {#if [...$sendingList.keys()].length}
           {#each [...$currentlySending.values(), ...$sendingQueue.values()] as progressInfo}
@@ -96,11 +107,12 @@
             />
           {/each}
         {:else}
-          <div class="flex h-[60vh] items-center justify-center text-white text-lg font-light">
+          <div class="flex h-[50vh] items-center justify-center text-white text-lg font-light">
             Nothing here yet!
           </div>
         {/if}
       {/if}
+
       {#if $historyPageSection == "received"}
         {#if [...$receivingList.keys()].length}
           {#each [...$currentlyReceiving.entries(), ...$receivingQueue.entries()] as progressInfo}
@@ -115,19 +127,11 @@
             />
           {/each}
         {:else}
-          <div class="flex h-[60vh] items-center justify-center text-white text-lg font-light">
+          <div class="flex h-[50vh] items-center justify-center text-white text-lg font-light">
             Nothing here yet!
           </div>
         {/if}
       {/if}
     </div>
-  </div>
-
-  <div
-    on:click={clear}
-    on:keypress={clear}
-    class="clear-all absolute bottom-0 mb-[10%] flex h-12 w-12 items-center justify-center rounded-full bg-rose-600 right-8 lg:right-20 lg:mb-[5%] lg:cursor-pointer shadow-lg hover:bg-rose-700 transition-colors duration-300"
-  >
-    <span class="material-symbols-rounded text-rose-100"> clear_all </span>
   </div>
 </div>
