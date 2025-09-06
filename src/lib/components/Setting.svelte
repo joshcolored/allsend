@@ -106,7 +106,7 @@
   <div
     on:click={closeSettings}
     on:keypress={closeSettings}
-    class="icon mb-4 mt-8 flex w-full justify-start pl-3.5 lg:ml-2 lg:mt-12 lg:cursor-pointer lg:pr-8"
+    class="icon mb-4 mt-8 flex w-full justify-start pl-3.5 lg:ml-2 lg:cursor-pointer lg:pr-8"
   >
     <span class="material-symbols-rounded text-3xl text-white">
       arrow_back
@@ -115,25 +115,25 @@
 
   <!-- Settings Card -->
   <div
-    class="relative mx-4 flex w-full max-w-[480px] flex-grow flex-col rounded-lg p-6 sm:max-w-[500px] md:max-w-[640px] lg:max-w-[800px]"
+    class="relative mx-4 flex w-full max-w-[480px] flex-grow flex-col rounded-lg px-6 sm:max-w-[500px] md:max-w-[640px] lg:max-w-[1200px]"
   >
-    <h1 class="mb-6 text-3xl font-medium text-[#1a8bbb]">Settings</h1>
+    <h1 class="mb-4 text-2xl font-medium text-[#1a8bbb]">Settings</h1>
     <hr class="border-gray-500" />
 
     <!-- Device Name -->
     <div class="settings-item my-6 w-full">
       <label
         for="name"
-        class="mb-1 block text-lg font-medium text-white lg:text-xl"
+        class="mb-1 block text-lg font-medium text-white lg:text-lg"
       >
         Device name:
       </label>
-      <div class="mb-4 text-sm text-gray-300 lg:text-lg">
+      <div class="mb-4 text-sm text-gray-300 lg:text-md">
         Provide a specific name for this device such as 'iPhone 16', 'Samsung
         Fold 5' or 'PC-NAME'.
       </div>
       <input
-        class="lg:text-md h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm text-black"
+        class="lg:text-sm h-10 w-full rounded-lg bg-zinc-100 p-4 text-sm text-black"
         type="text"
         name="name"
         id="name"
@@ -149,18 +149,18 @@
     <div class="settings-item my-4 w-full">
       <label
         for="server"
-        class="mb-2 block text-lg font-medium text-white lg:text-xl"
+        class="mb-2 block text-lg font-medium text-white lg:text-lg"
       >
         Server:
       </label>
-      <div class="mb-4 text-sm text-gray-300 lg:text-lg">
+      <div class="mb-4 text-sm text-gray-300 lg:text-md">
         Choose a server to connect to. For best performance, select a server
         geographically close to you. You can also run your own local server for
         enhanced privacy and control.
       </div>
 
       <select
-        class="lg:text-md h-10 w-full rounded-lg bg-zinc-100 px-4 text-sm text-black"
+        class="lg:text-sm h-10 w-full rounded-lg bg-zinc-100 px-4 text-sm text-black"
         name="server"
         id="server"
         on:change={handleSelectChange}
@@ -199,15 +199,15 @@
     <div class="settings-item my-6 w-full">
       <label
         for="mobile-data"
-        class="mb-2 block text-lg font-medium text-white lg:text-xl"
+        class="mb-2 block text-lg font-medium text-white lg:text-lg"
       >
         Connection Mode:
       </label>
-      <div class="mb-4 text-sm text-gray-300 lg:text-lg">
+      <div class="mb-4 text-sm text-gray-300 lg:text-sm">
         When enabled, the app will only work if your device is on
         <b>mobile data</b>. Transfers will be blocked on Wi-Fi.
       </div>
-      <label class="flex items-center gap-2 text-white">
+      <label class="flex items-center gap-2 text-white lg:text-sm">
         <input
           id="mobile-data"
           type="checkbox"
@@ -220,7 +220,7 @@
 
     <hr class="border-gray-500" />
 
-    <div class="mt-8 text-center text-sm text-gray-300 lg:text-lg">
+    <div class="mt-4 text-center text-sm text-gray-300 lg:text-lg">
       Your settings are saved automatically, no action needed!
     </div>
   </div>
