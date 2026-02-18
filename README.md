@@ -165,7 +165,7 @@ See LICENSE file for full details.
 
 ## 👨‍💻 Author
 
-Hezekiah Grijaldo  
-IT Professional | Web Developer | Real-Time Systems Enthusiast
+Joshua Grijaldo  
+Aspiring Web Developer
 
 If you found this project useful, ⭐ consider starring the repository.
